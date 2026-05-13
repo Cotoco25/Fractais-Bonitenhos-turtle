@@ -1,8 +1,12 @@
 from turtle import *
 from time import sleep
+from random import randint
+
 t = Turtle()
 t.speed(0)
 
+def randomColor():
+  return (randint(0, 255), randint(0, 255), randint(0, 255))
 
 #funcao abaixo:
 #ola tudo bem
@@ -45,6 +49,7 @@ mostra_palavra_recursivo("bicalho-o-o-o-o-o-o-o-o-o")
 
 colormode(255)
 
+
 def drawsquare(t, size):
     t.pd()
     t.begin_fill()
@@ -55,23 +60,21 @@ def drawsquare(t, size):
     t.end_fill()
     t.pu()
 
+t.pu()
+t.goto(-50,-50)
+t.pd()
 
 def drawsquarefractal(t,size,step = 50):
-    if size == 0 or step == 0:
+    if size == 0:
         return
     t.fd(size / 1.5)
     t.lt(10)
-    drawsquare(t, size)
+    drawsquare(t, size) 
+    t.lt(90)
     drawsquarefractal(t,size-1,step-1)
 
-drawsquarefractal(t,70,60)
 
-def drawMotherFuckingStar(t,size):
-    if size < 10:
-        return
-    for i in range(5):
-        t.fd(size)
-        drawMotherFuckingStar(t,size / 3)
-        t.lt(216)
+drawsquarefractal(t,200,100)
+
 
 mainloop()
